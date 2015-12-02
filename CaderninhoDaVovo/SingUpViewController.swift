@@ -66,7 +66,7 @@ class SingUpViewController: BackgroundViewController {
     func salvaUsuarioMySQL(){
         var dados:[String] = [String]()
         dados.append("login=\(PFUser.currentUser()!.username!)")
-        //dados.append("nome=\(PFUser.currentUser()!["nome"]!)")
+      //  dados.append("nome=\(PFUser.currentUser()!["nome"]!)")
         dados.append("senha=\(PFUser.currentUser()!.password!)")
         dados.append("email=\(PFUser.currentUser()!.email!)")
         dados.append("codigo=\(PFUser.currentUser()!.objectId!)")
