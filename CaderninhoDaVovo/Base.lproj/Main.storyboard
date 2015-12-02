@@ -447,8 +447,13 @@
                                     <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HYj-8v-pWK">
                                         <rect key="frame" x="0.0" y="164" width="320" height="44"/>
                                         <items>
+                                            <barButtonItem systemItem="done" id="9Kv-Ft-c6H">
+                                                <connections>
+                                                    <action selector="salvarFoto:" destination="uVi-Gd-iRe" id="g83-A6-VBb"/>
+                                                </connections>
+                                            </barButtonItem>
                                             <barButtonItem style="plain" systemItem="flexibleSpace" id="mAS-fO-QL3"/>
-                                            <barButtonItem systemItem="refresh" id="ahM-FM-vLa">
+                                            <barButtonItem systemItem="compose" id="ahM-FM-vLa">
                                                 <connections>
                                                     <action selector="CarregarFoto:" destination="uVi-Gd-iRe" id="L7V-Yp-rff"/>
                                                 </connections>
