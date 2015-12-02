@@ -129,6 +129,20 @@ class NovaReceitaViewController: UIViewController, UITextFieldDelegate,UINavigat
         imagePicker.sourceType = .Camera
         presentViewController(imagePicker, animated: true, completion: nil)
     }
+    
+    @IBAction func salvarFoto(sender: AnyObject) {
+        let imageData = UIImageJPEGRepresentation(imgReceita.image!, 0.5)
+        let base64String = imageData!.base64EncodedStringWithOptions(.Encoding64CharacterLineLength)
+        
+        var dados:[String] = [String]()
+        dados.append("imagem=\(base64String)")
+        dados.append("&receitaID=\(receita!.codigo!)")
+        dados.append("&usuarioID=\(PFUser.currentUser()!.objectId!)")
+        if(codigo != "" && codigo != "0"){ dados.append("&receitaID=\(codigo)") }
+        
+        Utils.salvaDados("http://syskf.institutobfh.com.br//modulos/appCaderninho/saveImagem.ashx", params: dados, alerta: true, callback: nil)
+    }
+    
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         let img:UIImage = info[UIImagePickerControllerOriginalImage] as! UIImage
         self.imgReceita.image = img
