@@ -16,7 +16,13 @@ class BackgroundViewController: UIViewController {
         fundo.sizeToFit()
         fundo.alpha = 0.7
         
-        fundo.frame = CGRect(x: 0, y: 0, width: 320, height: 570)
+        let tela:CGSize = UIScreen.mainScreen().bounds.size
+        
+
+        
+       fundo.frame = CGRect(x: 0, y: 0, width: tela.width, height: tela.height)
+        
+            
             
         self.view.addSubview(fundo)
         self.view.sendSubviewToBack(fundo)

@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <scenes>
         <!--Sing Up View Controller-->
@@ -135,7 +134,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="28" sectionFooterHeight="28" id="k8W-Dq-Yip">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.92941176470588238" green="0.77254901960784317" blue="0.49803921568627452" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="70" id="Imi-7J-hm5" customClass="ReceitaTableViewCell" customModule="CaderninhoDaVovo" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="320" height="70"/>
@@ -167,6 +166,7 @@
                                             <color key="color" red="1" green="0.010526315789473717" blue="0.010526315789473717" alpha="1" colorSpace="calibratedRGB"/>
                                         </activityIndicatorView>
                                     </subviews>
+                                    <color key="backgroundColor" red="0.92941176470588238" green="0.77254901960784317" blue="0.49803921568627452" alpha="1" colorSpace="calibratedRGB"/>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="imgReceita" destination="vDS-kL-nxT" id="5sY-ID-tD0"/>
@@ -182,7 +182,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Receitas" id="8GS-bA-L3C">
-                        <barButtonItem key="leftBarButtonItem" title="Logout" id="RaT-8C-d9l">
+                        <barButtonItem key="leftBarButtonItem" title="Sair" id="RaT-8C-d9l">
                             <connections>
                                 <action selector="LogoutAction:" destination="3OI-Mo-NtJ" id="Jr3-RO-d0e"/>
                             </connections>
@@ -233,6 +233,7 @@
                                     </view>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FxQ-PC-kjm">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="164"/>
+                                        <color key="backgroundColor" red="0.92941176469999998" green="0.7725490196" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mB8-qv-dRY">
                                         <rect key="frame" x="20" y="182" width="280" height="21"/>
@@ -258,7 +259,7 @@
                                 </connections>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.92941176469999998" green="0.7725490196" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
@@ -302,7 +303,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="28" sectionFooterHeight="28" id="Xwp-vH-dZT">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.92941176469999998" green="0.7725490196" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellID" rowHeight="70" id="4Zv-fa-pEq" customClass="MinhaReceitaTableViewCell" customModule="CaderninhoDaVovo" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="320" height="70"/>
@@ -339,6 +340,7 @@
                                         </button>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.92941176469999998" green="0.7725490196" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="btnEdit" destination="Nru-uz-onr" id="awq-xx-egF"/>
                                     <outlet property="imgReceita" destination="fH6-V6-mtU" id="NRP-os-tSC"/>
@@ -354,7 +356,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Minhas Receitas" id="U30-Oa-xdM">
-                        <barButtonItem key="leftBarButtonItem" title="Logout" id="2BE-TZ-rLi">
+                        <barButtonItem key="leftBarButtonItem" title="Sair" id="2BE-TZ-rLi">
                             <connections>
                                 <action selector="LogoutAction:" destination="few-pt-WWK" id="UUa-hc-XFS"/>
                             </connections>
@@ -459,13 +461,14 @@
                                         </items>
                                     </toolbar>
                                 </subviews>
+                                <color key="backgroundColor" red="0.92941176469999998" green="0.7725490196" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="vFX-VF-5UB">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="D8L-6b-kHl">
+                        <barButtonItem key="rightBarButtonItem" title="Salvar" id="D8L-6b-kHl">
                             <connections>
                                 <action selector="salvaReceita:" destination="uVi-Gd-iRe" id="oX0-oj-94K"/>
                             </connections>
@@ -536,6 +539,6 @@
         <image name="noImage" width="500" height="362"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="apb-O9-Pcb"/>
+        <segue reference="Riy-ce-7SL"/>
     </inferredMetricsTieBreakers>
 </document>

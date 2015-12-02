@@ -20,11 +20,11 @@ class LoginViewController: BackgroundViewController , PFLogInViewControllerDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        login_btn.backgroundColor = UIColor.clearColor()
+        login_btn.backgroundColor = UIColor.whiteColor()
         login_btn.layer.cornerRadius = 5
         login_btn.layer.borderWidth = 2
         login_btn.layer.borderColor = UIColor.blackColor().CGColor
-        signup_btn.backgroundColor = UIColor.clearColor()
+        signup_btn.backgroundColor = UIColor.whiteColor()
         signup_btn.layer.cornerRadius = 5
         signup_btn.layer.borderWidth = 2
         signup_btn.layer.borderColor = UIColor.blackColor().CGColor

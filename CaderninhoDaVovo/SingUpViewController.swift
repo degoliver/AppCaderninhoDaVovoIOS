@@ -19,7 +19,7 @@ class SingUpViewController: BackgroundViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        signup_btn.backgroundColor = UIColor.clearColor()
+        signup_btn.backgroundColor = UIColor.whiteColor()
         signup_btn.layer.cornerRadius = 5
         signup_btn.layer.borderWidth = 2
         signup_btn.layer.borderColor = UIColor.blackColor().CGColor
@@ -66,7 +66,7 @@ class SingUpViewController: BackgroundViewController {
     func salvaUsuarioMySQL(){
         var dados:[String] = [String]()
         dados.append("login=\(PFUser.currentUser()!.username!)")
-        dados.append("nome=\(PFUser.currentUser()!["nome"]!)")
+      //  dados.append("nome=\(PFUser.currentUser()!["nome"]!)")
         dados.append("senha=\(PFUser.currentUser()!.password!)")
         dados.append("email=\(PFUser.currentUser()!.email!)")
         dados.append("codigo=\(PFUser.currentUser()!.objectId!)")
