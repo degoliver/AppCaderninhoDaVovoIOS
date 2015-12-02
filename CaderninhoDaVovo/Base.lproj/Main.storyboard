@@ -446,7 +446,16 @@
                                         <rect key="frame" x="0.0" y="164" width="320" height="44"/>
                                         <items>
                                             <barButtonItem style="plain" systemItem="flexibleSpace" id="mAS-fO-QL3"/>
-                                            <barButtonItem systemItem="edit" id="L7a-A7-vJ7"/>
+                                            <barButtonItem systemItem="refresh" id="ahM-FM-vLa">
+                                                <connections>
+                                                    <action selector="CarregarFoto:" destination="uVi-Gd-iRe" id="L7V-Yp-rff"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem systemItem="camera" id="xTS-Yz-DOS">
+                                                <connections>
+                                                    <action selector="TirarFoto:" destination="uVi-Gd-iRe" id="T2J-10-gnO"/>
+                                                </connections>
+                                            </barButtonItem>
                                         </items>
                                     </toolbar>
                                 </subviews>
@@ -465,7 +474,6 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
-                        <outlet property="btnEditImagem" destination="L7a-A7-vJ7" id="gZn-iE-TtW"/>
                         <outlet property="btnSave" destination="D8L-6b-kHl" id="IVr-ap-EIT"/>
                         <outlet property="imgLoad" destination="BDi-Dh-2jz" id="Ctb-pt-q57"/>
                         <outlet property="imgReceita" destination="ROz-60-pqI" id="5C3-x4-crr"/>

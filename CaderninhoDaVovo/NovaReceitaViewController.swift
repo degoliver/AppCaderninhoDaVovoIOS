@@ -9,11 +9,14 @@
 import UIKit
 import Parse
 
-class NovaReceitaViewController: UIViewController, UITextFieldDelegate {
-
+class NovaReceitaViewController: UIViewController, UITextFieldDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate{
+    var imagePicker: UIImagePickerController!
+    
     var codigo:String = "0"
     var receita:Receita?
     
+    @IBOutlet weak var tirarFoto: UIButton!
+    @IBOutlet weak var carregarFoto: UIButton!
     @IBOutlet weak var btnSave: UIBarButtonItem!
     @IBOutlet weak var imgLoad: UIActivityIndicatorView!
     @IBOutlet weak var scrollView: UIScrollView!
@@ -39,7 +42,7 @@ class NovaReceitaViewController: UIViewController, UITextFieldDelegate {
         txtModoPreparo.layer.borderWidth = 1
         txtModoPreparo.layer.borderColor = UIColor.lightGrayColor().CGColor
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -71,7 +74,7 @@ class NovaReceitaViewController: UIViewController, UITextFieldDelegate {
         }
         return false
     }
-
+    
     func retornaImagem(img: UIImage?) {
         if(img != nil){
             self.imgLoad.stopAnimating()
@@ -114,14 +117,34 @@ class NovaReceitaViewController: UIViewController, UITextFieldDelegate {
             txtNome.becomeFirstResponder()
         }
     }
+    @IBAction func CarregarFoto(sender: AnyObject) {
+        imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+        self.presentViewController(imagePicker, animated: true, completion: nil)
+    }
+    @IBAction func TirarFoto(sender: AnyObject) {
+        imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .Camera
+        presentViewController(imagePicker, animated: true, completion: nil)
+    }
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        let img:UIImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        self.imgReceita.image = img
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        picker.dismissViewControllerAnimated(true, completion: nil)
+    }
     /*
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // Get the new view controller using segue.destinationViewController.
+    // Pass the selected object to the new view controller.
     }
     */
-
+    
 }
