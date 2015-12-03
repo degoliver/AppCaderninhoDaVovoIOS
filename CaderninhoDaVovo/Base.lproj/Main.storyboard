@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <scenes>
         <!--Sing Up View Controller-->
@@ -483,6 +482,7 @@
                         <outlet property="imgLoad" destination="BDi-Dh-2jz" id="Ctb-pt-q57"/>
                         <outlet property="imgReceita" destination="ROz-60-pqI" id="5C3-x4-crr"/>
                         <outlet property="scrollView" destination="Bv8-bP-BgI" id="OFF-PU-tzf"/>
+                        <outlet property="tbImagem" destination="HYj-8v-pWK" id="xSE-ng-N7t"/>
                         <outlet property="txtIngredientes" destination="0WV-j1-He8" id="ga9-In-2z9"/>
                         <outlet property="txtModoPreparo" destination="CRD-ba-26G" id="x44-FQ-2FT"/>
                         <outlet property="txtNome" destination="nc4-wb-aKG" id="dxp-wz-XLB"/>
