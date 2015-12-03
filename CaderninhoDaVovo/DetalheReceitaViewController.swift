@@ -8,11 +8,14 @@
 
 import UIKit
 import Parse
+import Social
 
 class DetalheReceitaViewController: UIViewController, UIScrollViewDelegate {
     
     var codigo:String?
     var receita:Receita?
+    var ignfc: String = ""
+    var modfc: String = ""
     @IBOutlet weak var imgLike: UIImageView!
     @IBOutlet weak var lblLike: UILabel!
     @IBOutlet weak var imgReceita: UIImageView!
@@ -33,6 +36,9 @@ class DetalheReceitaViewController: UIViewController, UIScrollViewDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+
+    
     
     func retornaImagem(img: UIImage?) {
         if(img != nil){
@@ -73,6 +79,7 @@ class DetalheReceitaViewController: UIViewController, UIScrollViewDelegate {
         //Cria view INGREDIENTES
         let lblIng:UILabel = UILabel(frame: CGRectMake(10, 25, 288, 20))
         lblIng.text = receita!.ingredientes!
+        ignfc = receita!.ingredientes!
         lblIng.numberOfLines = 0
         lblIng.lineBreakMode = NSLineBreakMode.ByWordWrapping
         lblIng.font = UIFont(name: ".SFUIText-Regular", size: 12)
@@ -91,6 +98,7 @@ class DetalheReceitaViewController: UIViewController, UIScrollViewDelegate {
         //Cria view MODO DE PREPARO
         let lblModPre:UILabel = UILabel(frame: CGRectMake(10, 25, 288, 20))
         lblModPre.text = receita!.modoPreparo!
+        modfc = receita!.modoPreparo!
         lblModPre.numberOfLines = 0
         lblModPre.lineBreakMode = NSLineBreakMode.ByWordWrapping
         lblModPre.font = UIFont(name: ".SFUIText-Regular", size: 12)
@@ -108,6 +116,26 @@ class DetalheReceitaViewController: UIViewController, UIScrollViewDelegate {
         
         scroolView.contentSize.height = 230 + view1.frame.height + view2.frame.height
     }
+    @IBAction func compartilharButton(sender: AnyObject) {
+        
+        if SLComposeViewController.isAvailableForServiceType(SLServiceTypeFacebook){
+            
+            var fbShare:SLComposeViewController = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
+            self.presentViewController(fbShare, animated: true, completion: nil)
+            
+            var TextoFace: String = ""
+            
+            TextoFace = lblNome.text! + "\n" + lblUsuario.text! + "\n" + "-------Ingredientes--------\n" + ignfc + "\n" + "------Modo de Preparo-------\n" + modfc
+            fbShare.setInitialText(TextoFace)
+            fbShare.addImage(imgReceita.image)
+            
+            
+        }else{
+            var alert = UIAlertController(title: "Conta", message: "Entre com seu login", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "ok", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+            
+        }
     
     func imageTapped(img: AnyObject)
     {
@@ -135,4 +163,5 @@ class DetalheReceitaViewController: UIViewController, UIScrollViewDelegate {
         imgLike.hidden = false
     }
     
+}
 }

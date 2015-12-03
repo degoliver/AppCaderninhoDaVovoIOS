@@ -19,7 +19,7 @@ class SingUpViewController: BackgroundViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        signup_btn.backgroundColor = UIColor.clearColor()
+        signup_btn.backgroundColor = UIColor.whiteColor()
         signup_btn.layer.cornerRadius = 5
         signup_btn.layer.borderWidth = 2
         signup_btn.layer.borderColor = UIColor.blackColor().CGColor
