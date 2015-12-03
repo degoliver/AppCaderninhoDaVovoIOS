@@ -16,9 +16,43 @@ class LoginViewController: BackgroundViewController , PFLogInViewControllerDeleg
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     
-    
+    override func viewDidAppear(animated: Bool) {
+        if(NSUserDefaults.standardUserDefaults().objectForKey("Usuario") != nil){
+            var user = String( NSUserDefaults.standardUserDefaults().objectForKey("Usuario"))
+            
+            var pass = String(NSUserDefaults.standardUserDefaults().objectForKey("senha"))
+            print(user + pass)
+            PFUser.logInWithUsernameInBackground(user, password: pass, block: {(user, error ) -> Void in
+                if((user) != nil){
+                    
+                    //var alert = UIAlertView(title: "Success", message: "Logged In", delegate: self, cancelButtonTitle: "OK")
+                    //alert.show()
+                    self.performSegueWithIdentifier("toPrincipal",sender:nil)
+                }
+                
+            })
+        }
+
+    }
+       
     override func viewDidLoad() {
         super.viewDidLoad()
+        if(NSUserDefaults.standardUserDefaults().objectForKey("Usuario") != nil){
+            var user = String( NSUserDefaults.standardUserDefaults().objectForKey("Usuario"))
+            
+            var pass = String(NSUserDefaults.standardUserDefaults().objectForKey("senha"))
+            print(user + pass)
+            PFUser.logInWithUsernameInBackground(user, password: pass, block: {(user, error ) -> Void in
+                if((user) != nil){
+                    
+                    //var alert = UIAlertView(title: "Success", message: "Logged In", delegate: self, cancelButtonTitle: "OK")
+                    //alert.show()
+                    self.performSegueWithIdentifier("toPrincipal",sender:nil)
+                }
+                
+            })
+        }
+
         // Do any additional setup after loading the view, typically from a nib.
         login_btn.backgroundColor = UIColor.whiteColor()
         login_btn.layer.cornerRadius = 5
@@ -39,11 +73,16 @@ class LoginViewController: BackgroundViewController , PFLogInViewControllerDeleg
         let username = self.usernameField.text
         let password = self.passwordField.text
         
+        
         if(username?.utf16.count < 4 || password?.utf16.count < 5){
             Utils.alert("Erro", msg: "Usuário ou senha inválida")
         }else{
             PFUser.logInWithUsernameInBackground(username!, password: password!, block: {(user, error ) -> Void in
                 if((user) != nil){
+                    NSUserDefaults.standardUserDefaults().setValue(username , forKey:"Usuario")
+                    NSUserDefaults.standardUserDefaults().setValue( password, forKey:"senha")
+                    NSUserDefaults.standardUserDefaults().synchronize()
+              
                     //var alert = UIAlertView(title: "Success", message: "Logged In", delegate: self, cancelButtonTitle: "OK")
                     //alert.show()
                   self.performSegueWithIdentifier("toPrincipal", sender: sender )
