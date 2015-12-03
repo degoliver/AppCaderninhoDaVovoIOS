@@ -25,10 +25,13 @@ class NovaReceitaViewController: UIViewController, UITextFieldDelegate,UINavigat
     @IBOutlet weak var btnEditImagem: UIBarButtonItem!
     @IBOutlet weak var txtNome: UITextField!
     @IBOutlet weak var txtModoPreparo: UITextView!
+    @IBOutlet weak var tbImagem: UIToolbar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        imgLoad.startAnimating()
+        imgReceita.image = UIImage(named: "noImage")
         Receita.carregaReceita("http://syskf.institutobfh.com.br//modulos/appCaderninho/selectReceita.ashx?receitaID=" + codigo, callback: carregaView)
         
         scrollView.contentSize.height = 600
@@ -54,8 +57,8 @@ class NovaReceitaViewController: UIViewController, UITextFieldDelegate,UINavigat
         }
         
         if(receita?.imagem != ""){
-            imgLoad.startAnimating()
-            Utils.downloadImage((receita?.imagem)!, callback: retornaImagem)
+            self.imgReceita.image = Utils.downloadImage((receita?.imagem)!)
+            imgLoad.stopAnimating()
         }
         
         txtNome.text = receita!.nome!
@@ -73,13 +76,6 @@ class NovaReceitaViewController: UIViewController, UITextFieldDelegate,UINavigat
             txtModoPreparo.resignFirstResponder()
         }
         return false
-    }
-    
-    func retornaImagem(img: UIImage?) {
-        if(img != nil){
-            self.imgLoad.stopAnimating()
-            self.imgReceita.image = img
-        }
     }
     
     @IBAction func salvaReceita(sender: AnyObject) {
@@ -131,16 +127,29 @@ class NovaReceitaViewController: UIViewController, UITextFieldDelegate,UINavigat
     }
     
     @IBAction func salvarFoto(sender: AnyObject) {
-        let imageData = UIImageJPEGRepresentation(imgReceita.image!, 0.5)
-        let base64String = imageData!.base64EncodedStringWithOptions(.Encoding64CharacterLineLength)
+        var quality:CGFloat = 1
+        var imageData = UIImageJPEGRepresentation(imgReceita.image!, quality)
+        var base64String = imageData!.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.Encoding64CharacterLineLength)
+        var tam:Int = base64String.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)
         
+        while(tam > 1048576){
+            quality -= 0.1
+            imageData = UIImageJPEGRepresentation(imgReceita.image!, quality)
+            base64String = imageData!.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.Encoding64CharacterLineLength)
+            tam = base64String.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)
+        }
+        
+        tbImagem.items![0].enabled = false
         var dados:[String] = [String]()
         dados.append("imagem=\(base64String)")
         dados.append("&receitaID=\(receita!.codigo!)")
         dados.append("&usuarioID=\(PFUser.currentUser()!.objectId!)")
-        if(codigo != "" && codigo != "0"){ dados.append("&receitaID=\(codigo)") }
         
-        Utils.salvaDados("http://syskf.institutobfh.com.br//modulos/appCaderninho/saveImagem.ashx", params: dados, alerta: true, callback: nil)
+        Utils.salvaDados("http://syskf.institutobfh.com.br//modulos/appCaderninho/saveImagem.ashx", params: dados, alerta: true, callback: retornaUploadImg)
+    }
+    
+    func retornaUploadImg(status: Bool){
+        tbImagem.items![0].enabled = true
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {

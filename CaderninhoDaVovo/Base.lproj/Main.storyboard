@@ -493,6 +493,7 @@
                         <outlet property="imgLoad" destination="BDi-Dh-2jz" id="Ctb-pt-q57"/>
                         <outlet property="imgReceita" destination="ROz-60-pqI" id="5C3-x4-crr"/>
                         <outlet property="scrollView" destination="Bv8-bP-BgI" id="OFF-PU-tzf"/>
+                        <outlet property="tbImagem" destination="HYj-8v-pWK" id="xSE-ng-N7t"/>
                         <outlet property="txtIngredientes" destination="0WV-j1-He8" id="ga9-In-2z9"/>
                         <outlet property="txtModoPreparo" destination="CRD-ba-26G" id="x44-FQ-2FT"/>
                         <outlet property="txtNome" destination="nc4-wb-aKG" id="dxp-wz-XLB"/>

@@ -51,7 +51,8 @@ class MinhasReceitasTableViewController: UITableViewController {
         cell.lblLike.text = (self.receitas[indexPath.row].qtdLike! == 0) ? "Ninguém favoritou ainda" : String(self.receitas[indexPath.row].qtdLike!) + ((self.receitas[indexPath.row].qtdLike! == 1) ? " gostou" : " gostaram")
         if(self.receitas[indexPath.row].imagem != ""){
             cell.loadImg.startAnimating()
-            Utils.downloadImage(self.receitas[indexPath.row].imagem!, callback: retornaImagem, sender: cell)
+            cell.imgReceita.image = Utils.downloadImage(self.receitas[indexPath.row].imagem!)
+            cell.loadImg.stopAnimating()
         }
         cell.btnEdit.tag = cell.receitaID!
         cell.btnEdit.addTarget(self, action: "editReceita:", forControlEvents: .TouchUpInside)
@@ -74,14 +75,6 @@ class MinhasReceitasTableViewController: UITableViewController {
     @IBAction func LogoutAction(sender: UIBarButtonItem) {
         PFUser.logOut()
         self.dismissViewControllerAnimated(false, completion: nil)
-    }
-    
-    func retornaImagem(img: UIImage?, sender: AnyObject?){
-        let cell = sender as? MinhaReceitaTableViewCell
-        if(img != nil){
-            cell?.imgReceita.image = img
-        }
-        cell?.loadImg.stopAnimating()
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

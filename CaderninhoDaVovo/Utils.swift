@@ -31,10 +31,6 @@ class Utils: UIViewController {
         request.HTTPBody = paramString.dataUsingEncoding(NSUTF8StringEncoding)
         
         let task = session.dataTaskWithRequest(request, completionHandler: { (data:NSData?, response:NSURLResponse?, error:NSError?) -> Void in
-            
-            let retStr: String = String(data: data!, encoding: NSUTF8StringEncoding)!
-            print(retStr)
-            
             dispatch_async(dispatch_get_main_queue(), {
                 let result = resultado(data, alerta: alerta)
                 callback?(result)
@@ -48,7 +44,6 @@ class Utils: UIViewController {
         do{
             let json = try NSJSONSerialization.JSONObjectWithData(data!, options: [])
             if let result = json["msg"] as? String {
-                print(result)
                 status = ((json["status"] as! String == "OK") ? true : false)
                 if(alerta){ alert((status) ? "Sucesso" : "Erro", msg: result) }
             }
@@ -71,40 +66,13 @@ class Utils: UIViewController {
         }
     }
     
-    class func downloadImage(imgURL: String, callback: (UIImage?) -> Void) {
-        let url = NSURL(string: imgURL)!
-        let imageSession = NSURLSession.sharedSession()
-        let imgTask = imageSession.downloadTaskWithURL(url){(url,response,error) -> Void in
-            if(error==nil){
-                if let imageData = NSData(contentsOfURL: url!){
-                    dispatch_async(dispatch_get_main_queue(), {
-                        callback(UIImage(data: imageData))
-                    })
-                }
-            } else{
-                print("erro na imagem")
-                callback(nil)
-            }
-        }
-        imgTask.resume()
-    }
-    
-    class func downloadImage(imgURL: String, callback: (UIImage?, sender: AnyObject?) -> Void, sender: AnyObject?) {
-        let url = NSURL(string: imgURL)!
-        let imageSession = NSURLSession.sharedSession()
-        let imgTask = imageSession.downloadTaskWithURL(url){(url,response,error) -> Void in
-            if(error==nil){
-                if let imageData = NSData(contentsOfURL: url!){
-                    dispatch_async(dispatch_get_main_queue(), {
-                            callback(UIImage(data: imageData), sender: sender)
-                    })
-                }
-            } else{
-                print("erro na imagem")
-                callback(nil, sender: sender)
-            }
-        }
-        imgTask.resume()
+    class func downloadImage(img: String) -> UIImage {
+        
+        let decodedData = NSData(base64EncodedString: img, options: [])
+        if(decodedData == nil) { return UIImage(named: "noImage")! }
+        var decodedimage = UIImage(data: decodedData!)
+        
+        return decodedimage! as! UIImage
     }
     
 }

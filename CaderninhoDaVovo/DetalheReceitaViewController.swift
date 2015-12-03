@@ -28,6 +28,7 @@ class DetalheReceitaViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         imgLike.hidden = true
+        loadImg.startAnimating()
         Receita.carregaReceita("http://syskf.institutobfh.com.br//modulos/appCaderninho/selectReceita.ashx?receitaID=" + codigo! + "&usuarioID="+PFUser.currentUser()!.objectId!, callback: carregaView)
     }
     
@@ -56,8 +57,8 @@ class DetalheReceitaViewController: UIViewController, UIScrollViewDelegate {
         imgLike.hidden = false
         
         if(receita?.imagem != ""){
-            loadImg.startAnimating()
-            Utils.downloadImage((receita?.imagem)!, callback: retornaImagem)
+            self.imgReceita.image = Utils.downloadImage((receita?.imagem)!)
+            self.loadImg.stopAnimating()
         }
         
         lblUsuario.text = "Por: \(receita!.nomeUsuario!)"
