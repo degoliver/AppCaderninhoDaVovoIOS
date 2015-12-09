@@ -149,7 +149,7 @@ class DetalheReceitaViewController: UIViewController, UIScrollViewDelegate {
         Utils.salvaDados("http://syskf.institutobfh.com.br//modulos/appCaderninho/saveLike.ashx", params: dados, alerta: true, callback: retornaDados)
     }
     
-    func retornaDados(status: Bool, id: String){
+    func retornaDados(status: Bool, id: String, indexPath: NSIndexPath?){
         loadLike.stopAnimating()
         if(status) {
             if(receita!.marcadolike!){
