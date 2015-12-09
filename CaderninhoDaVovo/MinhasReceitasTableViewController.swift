@@ -73,6 +73,9 @@ class MinhasReceitasTableViewController: UITableViewController {
     
     @IBAction func LogoutAction(sender: UIBarButtonItem) {
         PFUser.logOut()
+        NSUserDefaults.standardUserDefaults().setValue(nil  , forKey:"Usuario")
+        NSUserDefaults.standardUserDefaults().setValue( nil, forKey:"senha")
+        NSUserDefaults.standardUserDefaults().synchronize()
         self.dismissViewControllerAnimated(false, completion: nil)
     }
     

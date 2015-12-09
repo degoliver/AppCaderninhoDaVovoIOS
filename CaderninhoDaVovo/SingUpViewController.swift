@@ -55,10 +55,13 @@ class SingUpViewController: BackgroundViewController {
                 if((error) != nil){
                     Utils.alert("Erro",msg: "\(error)")
                 }else{
-                    self.dismissViewControllerAnimated(false, completion: nil)
+                     Utils.alert("Sucesso",msg: "Usuário Criado!")
                     self.salvaUsuarioMySQL()
-                    Utils.alert("Sucesso",msg: "Usuário Criado!")
+                    
+                    
                 }
+                self.dismissViewControllerAnimated(false, completion: nil)
+
             })
         }
     }
@@ -72,6 +75,7 @@ class SingUpViewController: BackgroundViewController {
         dados.append("codigo=\(PFUser.currentUser()!.objectId!)")
         
         Utils.salvaDados("http://syskf.institutobfh.com.br//modulos/appCaderninho/saveUsuario.ashx", params: dados)
+      
     }
     
 }
