@@ -50,8 +50,7 @@ class ReceitasTableViewController: UITableViewController {
         cell.lblLike.text = (self.receitas[indexPath.row].qtdLike! == 0) ? "Ninguém favoritou ainda" : String(self.receitas[indexPath.row].qtdLike!) + ((self.receitas[indexPath.row].qtdLike! == 1) ? " gostou" : " gostaram")
         if(self.receitas[indexPath.row].imagem != ""){
             cell.loadImg.startAnimating()
-            cell.imgReceita.image = Utils.downloadImage(self.receitas[indexPath.row].imagem!)
-            cell.loadImg.stopAnimating()
+            Utils.downloadImage(self.receitas[indexPath.row].imagem!, callback: retornaImagem, sender: cell)
         }
         
         return cell
@@ -71,6 +70,14 @@ class ReceitasTableViewController: UITableViewController {
             let vc:DetalheReceitaViewController = segue.destinationViewController as!DetalheReceitaViewController
             vc.codigo = "\(sender!)"
         }
+    }
+    
+    func retornaImagem(img: UIImage?, sender: AnyObject?){
+        let cell = sender as? ReceitaTableViewCell
+        if(img != nil){
+            cell?.imgReceita.image = img
+        }
+        cell?.loadImg.stopAnimating()
     }
 
     /*

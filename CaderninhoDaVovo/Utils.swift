@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class Utils: UIViewController {
 
@@ -66,13 +67,75 @@ class Utils: UIViewController {
         }
     }
     
-    class func downloadImage(img: String) -> UIImage {
+    class func downloadImage(imgURL: String, callback: (UIImage?) -> Void) {
+        let url = NSURL(string: imgURL)!
+        let imageSession = NSURLSession.sharedSession()
+        let imgTask = imageSession.downloadTaskWithURL(url){(url,response,error) -> Void in
+            if(error==nil){
+                if let imageData = NSData(contentsOfURL: url!){
+                    dispatch_async(dispatch_get_main_queue(), {
+                        callback(UIImage(data: imageData))
+                    })
+                }
+            } else{
+                print("erro na imagem")
+                callback(nil)
+            }
+        }
+        imgTask.resume()
+    }
+    
+    class func downloadImage(imgURL: String, callback: (UIImage?, sender: AnyObject?) -> Void, sender: AnyObject?) {
+        let url = NSURL(string: imgURL)!
+        let imageSession = NSURLSession.sharedSession()
+        let imgTask = imageSession.downloadTaskWithURL(url){(url,response,error) -> Void in
+            if(error==nil){
+                if let imageData = NSData(contentsOfURL: url!){
+                    dispatch_async(dispatch_get_main_queue(), {
+                        callback(UIImage(data: imageData), sender: sender)
+                    })
+                }
+            } else{
+                print("erro na imagem")
+                callback(nil, sender: sender)
+            }
+        }
+        imgTask.resume()
+    }
+    
+    class func salvarFoto(img: UIImage) -> String {
+        var quality:CGFloat = 1
+        var imageData = UIImageJPEGRepresentation(img, quality)
+        var tam:Int = (imageData?.length)!
+        while(tam > 1048576){
+            quality -= 0.1
+            imageData = UIImageJPEGRepresentation(img, quality)
+            tam = (imageData?.length)!
+        }
+        let url = NSURL(string: "http://syskf.institutobfh.com.br//modulos/appCaderninho/uploadImagem.ashx")
+        let request = NSMutableURLRequest(URL: url!)
+        request.HTTPMethod = "POST"
+        request.HTTPBody = NSData(data: imageData!)
         
-        let decodedData = NSData(base64EncodedString: img, options: [])
-        if(decodedData == nil) { return UIImage(named: "noImage")! }
-        var decodedimage = UIImage(data: decodedData!)
+        var response: NSURLResponse? = nil
+        var reply: NSData? = nil
+        do {
+            reply = try NSURLConnection.sendSynchronousRequest(request, returningResponse: &response)
+        } catch {
+            Utils.alert("Erro", msg: "Não foi possível salvar a imagem")
+        }
         
-        return decodedimage! as! UIImage
+        var imagemURL: String = ""
+        do{
+            let json = try NSJSONSerialization.JSONObjectWithData(reply!, options: [])
+            if let result = json["img"] as? String {
+                imagemURL = "http://syskf.institutobfh.com.br//modulos/appCaderninho/fotos/\(result).jpg"
+            }
+        }catch{
+            print("ERRO")
+            return imagemURL
+        }
+        return imagemURL
     }
     
 }

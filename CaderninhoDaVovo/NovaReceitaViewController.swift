@@ -12,6 +12,7 @@ import Parse
 class NovaReceitaViewController: UIViewController, UITextFieldDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate{
     var imagePicker: UIImagePickerController!
     
+    var imgModificada = false
     var codigo:String = "0"
     var receita:Receita?
     
@@ -30,7 +31,7 @@ class NovaReceitaViewController: UIViewController, UITextFieldDelegate,UINavigat
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        imgLoad.startAnimating()
+        imgModificada = false
         imgReceita.image = UIImage(named: "noImage")
         Receita.carregaReceita("http://syskf.institutobfh.com.br//modulos/appCaderninho/selectReceita.ashx?receitaID=" + codigo, callback: carregaView)
         
@@ -57,8 +58,8 @@ class NovaReceitaViewController: UIViewController, UITextFieldDelegate,UINavigat
         }
         
         if(receita?.imagem != ""){
-            self.imgReceita.image = Utils.downloadImage((receita?.imagem)!)
-            imgLoad.stopAnimating()
+            imgLoad.startAnimating()
+            Utils.downloadImage((receita?.imagem)!, callback: retornaImagem)
         }
         
         txtNome.text = receita!.nome!
@@ -76,6 +77,13 @@ class NovaReceitaViewController: UIViewController, UITextFieldDelegate,UINavigat
             txtModoPreparo.resignFirstResponder()
         }
         return false
+    }
+    
+    func retornaImagem(img: UIImage?) {
+        if(img != nil){
+            self.imgLoad.stopAnimating()
+            self.imgReceita.image = img
+        }
     }
     
     @IBAction func salvaReceita(sender: AnyObject) {
@@ -105,6 +113,8 @@ class NovaReceitaViewController: UIViewController, UITextFieldDelegate,UINavigat
         if(codigo != "" && codigo != "0"){ dados.append("&receitaID=\(codigo)") }
         
         Utils.salvaDados("http://syskf.institutobfh.com.br//modulos/appCaderninho/saveReceita.ashx", params: dados, alerta: true, callback: retornaDados)
+        
+        salvarFoto()
     }
     
     func retornaDados(status: Bool){
@@ -126,34 +136,36 @@ class NovaReceitaViewController: UIViewController, UITextFieldDelegate,UINavigat
         presentViewController(imagePicker, animated: true, completion: nil)
     }
     
-    @IBAction func salvarFoto(sender: AnyObject) {
-        var quality:CGFloat = 1
-        var imageData = UIImageJPEGRepresentation(imgReceita.image!, quality)
-        var base64String = imageData!.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.Encoding64CharacterLineLength)
-        var tam:Int = base64String.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)
+    func salvarFoto() {
+        if(imgReceita.image == nil || !imgModificada){ return }
         
-        while(tam > 1048576){
-            quality -= 0.1
-            imageData = UIImageJPEGRepresentation(imgReceita.image!, quality)
-            base64String = imageData!.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.Encoding64CharacterLineLength)
-            tam = base64String.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)
+        let imgURL = Utils.salvarFoto(imgReceita.image!)
+        if(imgURL == "") {
+            Utils.alert("Erro", msg: "Não foi possível subir a imagem")
+            return
         }
         
-        tbImagem.items![0].enabled = false
         var dados:[String] = [String]()
-        dados.append("imagem=\(base64String)")
+        dados.append("imagem=\(imgURL)")
         dados.append("&receitaID=\(receita!.codigo!)")
         dados.append("&usuarioID=\(PFUser.currentUser()!.objectId!)")
         
-        Utils.salvaDados("http://syskf.institutobfh.com.br//modulos/appCaderninho/saveImagem.ashx", params: dados, alerta: true, callback: retornaUploadImg)
+        Utils.salvaDados("http://syskf.institutobfh.com.br//modulos/appCaderninho/saveImagem.ashx", params: dados, alerta: false, callback: retornaUploadImg)
     }
     
     func retornaUploadImg(status: Bool){
-        tbImagem.items![0].enabled = true
+        if(!status){
+            Utils.alert("Erro", msg: "Não foi possível salvar a imagem")
+        }
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         let img:UIImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        
+        if(imgReceita.image != img) {
+            imgModificada = true
+        }
+        
         self.imgReceita.image = img
         dismissViewControllerAnimated(true, completion: nil)
     }

@@ -18,9 +18,9 @@ class LoginViewController: BackgroundViewController , PFLogInViewControllerDeleg
     
     override func viewDidAppear(animated: Bool) {
         if(NSUserDefaults.standardUserDefaults().objectForKey("Usuario") != nil){
-            var user = String( NSUserDefaults.standardUserDefaults().objectForKey("Usuario"))
+            let user = String( NSUserDefaults.standardUserDefaults().objectForKey("Usuario"))
             
-            var pass = String(NSUserDefaults.standardUserDefaults().objectForKey("senha"))
+            let pass = String(NSUserDefaults.standardUserDefaults().objectForKey("senha"))
             print(user + pass)
             PFUser.logInWithUsernameInBackground(user, password: pass, block: {(user, error ) -> Void in
                 if((user) != nil){
@@ -38,9 +38,9 @@ class LoginViewController: BackgroundViewController , PFLogInViewControllerDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         if(NSUserDefaults.standardUserDefaults().objectForKey("Usuario") != nil){
-            var user = String( NSUserDefaults.standardUserDefaults().objectForKey("Usuario"))
+            let user = String( NSUserDefaults.standardUserDefaults().objectForKey("Usuario"))
             
-            var pass = String(NSUserDefaults.standardUserDefaults().objectForKey("senha"))
+            let pass = String(NSUserDefaults.standardUserDefaults().objectForKey("senha"))
             print(user + pass)
             PFUser.logInWithUsernameInBackground(user, password: pass, block: {(user, error ) -> Void in
                 if((user) != nil){
