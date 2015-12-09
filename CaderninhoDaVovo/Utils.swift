@@ -15,7 +15,7 @@ class Utils: UIViewController {
         salvaDados(url, params: params, alerta: false, callback: nil)
     }
     
-    class func salvaDados(url: String, params: [String], alerta: Bool, callback: ((Bool, id: String) -> Void)?){
+    class func salvaDados(url: String, params: [String], alerta: Bool, callback: ((Bool, id: String, indexPath: NSIndexPath?) -> Void)?, indexPath: NSIndexPath? = nil){
         let config = NSURLSessionConfiguration.defaultSessionConfiguration()
         let session = NSURLSession(configuration: config)
         
@@ -33,14 +33,14 @@ class Utils: UIViewController {
         
         let task = session.dataTaskWithRequest(request, completionHandler: { (data:NSData?, response:NSURLResponse?, error:NSError?) -> Void in
             dispatch_async(dispatch_get_main_queue(), {
-                let result = resultado(data, alerta: alerta)
+                let result = resultado(data, alerta: alerta, indexPath: indexPath)
                 callback?(result)
             })
         })
         task.resume()
     }
     
-    class func resultado(data:NSData?, alerta: Bool) -> (Bool, id: String) {
+    class func resultado(data:NSData?, alerta: Bool, indexPath: NSIndexPath?) -> (Bool, id: String, indexPath: NSIndexPath?) {
         var id = ""
         var status: Bool = false
         do{
@@ -57,9 +57,9 @@ class Utils: UIViewController {
             }
         }catch{
             print("ERRO")
-            return (false, "")
+            return (false, id: "", nil)
         }
-        return (status, id)
+        return (status, id, indexPath)
     }
     
     class func alert(title:String, msg:String){
