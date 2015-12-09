@@ -30,6 +30,10 @@ class DetalheReceitaViewController: UIViewController, UIScrollViewDelegate {
         imgLike.hidden = true
        
         Receita.carregaReceita("http://syskf.institutobfh.com.br//modulos/appCaderninho/selectReceita.ashx?receitaID=" + codigo! + "&usuarioID="+PFUser.currentUser()!.objectId!, callback: carregaView)
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("imageTapped"))
+        imgLike.userInteractionEnabled = true
+        imgLike.addGestureRecognizer(tapGestureRecognizer)
     }
     
     override func didReceiveMemoryWarning() {
@@ -62,9 +66,6 @@ class DetalheReceitaViewController: UIViewController, UIScrollViewDelegate {
         lblNome.text = receita?.nome
         
         imgLike.image = UIImage(named: (receita!.marcadolike!) ? "heart" : "heartWhite")
-        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:Selector("imageTapped:"))
-        imgLike.userInteractionEnabled = true
-        imgLike.addGestureRecognizer(tapGestureRecognizer)
         
         if(receita!.qtdLike! == 0){
             lblLike.text = "Ninguém favoritou esta receita ainda"
@@ -113,6 +114,7 @@ class DetalheReceitaViewController: UIViewController, UIScrollViewDelegate {
         
         scroolView.contentSize.height = 230 + view1.frame.height + view2.frame.height
     }
+    
     @IBAction func compartilharButton(sender: AnyObject) {
         
         if SLComposeViewController.isAvailableForServiceType(SLServiceTypeFacebook){
@@ -131,10 +133,10 @@ class DetalheReceitaViewController: UIViewController, UIScrollViewDelegate {
             var alert = UIAlertController(title: "Conta", message: "Entre com seu login", preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "ok", style: UIAlertActionStyle.Default, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
-            
         }
+    }
     
-    func imageTapped(img: AnyObject)
+    func imageTapped()
     {
         imgLike.hidden = true
         loadLike.startAnimating()
@@ -147,7 +149,7 @@ class DetalheReceitaViewController: UIViewController, UIScrollViewDelegate {
         Utils.salvaDados("http://syskf.institutobfh.com.br//modulos/appCaderninho/saveLike.ashx", params: dados, alerta: true, callback: retornaDados)
     }
     
-    func retornaDados(status: Bool){
+    func retornaDados(status: Bool, id: String, indexPath: NSIndexPath?){
         loadLike.stopAnimating()
         if(status) {
             if(receita!.marcadolike!){
@@ -160,5 +162,4 @@ class DetalheReceitaViewController: UIViewController, UIScrollViewDelegate {
         imgLike.hidden = false
     }
     
-}
 }

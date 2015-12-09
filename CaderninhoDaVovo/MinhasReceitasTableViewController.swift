@@ -15,6 +15,12 @@ class MinhasReceitasTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl?.addTarget(self, action: "doRefresh", forControlEvents: UIControlEvents.ValueChanged)
+        self.refreshControl?.tintColor = UIColor.redColor()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -63,6 +69,36 @@ class MinhasReceitasTableViewController: UITableViewController {
         self.performSegueWithIdentifier("minhasReceitasToDetalheSegue", sender: self.receitas[indexPath.row].codigo)
     }
     
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == .Delete {
+            tableView.beginUpdates()
+            
+            
+            
+            var dados:[String] = [String]()
+            dados.append("receitaID=\(receitas[indexPath.row].codigo!)")
+            
+            
+            Utils.salvaDados("http://syskf.institutobfh.com.br//modulos/appCaderninho/deleteReceita.ashx", params: dados, alerta: true, callback: retornaDados, indexPath: indexPath)
+            
+        } else if editingStyle == .Insert {
+            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+        }
+    }
+    
+    func retornaDados(status: Bool, id: String, indexPath: NSIndexPath?){
+        if(status) {
+            
+        let index = receitas.indexOf { $0.codigo == Int(id) }
+            
+        receitas.removeAtIndex(index!)
+        
+        tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
+        tableView.endUpdates()
+            
+        }
+    }
+    
     @IBAction func adicionarReceita(sender: UIBarButtonItem) {
         self.performSegueWithIdentifier("minhasReceitasToNovaReceitaSegue", sender: nil)
     }
@@ -107,17 +143,10 @@ class MinhasReceitasTableViewController: UITableViewController {
     }
     */
     
-    /*
+    
     // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-    if editingStyle == .Delete {
-    // Delete the row from the data source
-    tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-    } else if editingStyle == .Insert {
-    // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }
-    }
-    */
+    
+
     
     /*
     // Override to support rearranging the table view.

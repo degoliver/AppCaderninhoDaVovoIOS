@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "batedeira.jpg",
+      "filename" : "batedeira_02.jpg",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "batedeira@2x.jpg",
+      "filename" : "batedeira_03.jpg",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "batedeira@3x.jpg",
+      "filename" : "batedeira_04.jpg",
       "scale" : "3x"
     }
   ],

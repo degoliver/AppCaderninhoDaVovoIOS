@@ -113,22 +113,26 @@ class NovaReceitaViewController: UIViewController, UITextFieldDelegate,UINavigat
         if(codigo != "" && codigo != "0"){ dados.append("&receitaID=\(codigo)") }
         
         Utils.salvaDados("http://syskf.institutobfh.com.br//modulos/appCaderninho/saveReceita.ashx", params: dados, alerta: true, callback: retornaDados)
-        
-        salvarFoto()
     }
     
-    func retornaDados(status: Bool){
+    func retornaDados(status: Bool, id: String, indexPath: NSIndexPath?){
         self.navigationItem.rightBarButtonItem!.enabled = true
         if(!status) {
             txtNome.becomeFirstResponder()
         }
+        
+        receita?.codigo = Int(id)
+        
+        salvarFoto()
     }
+    
     @IBAction func CarregarFoto(sender: AnyObject) {
         imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
         self.presentViewController(imagePicker, animated: true, completion: nil)
     }
+    
     @IBAction func TirarFoto(sender: AnyObject) {
         imagePicker = UIImagePickerController()
         imagePicker.delegate = self
@@ -153,7 +157,7 @@ class NovaReceitaViewController: UIViewController, UITextFieldDelegate,UINavigat
         Utils.salvaDados("http://syskf.institutobfh.com.br//modulos/appCaderninho/saveImagem.ashx", params: dados, alerta: false, callback: retornaUploadImg)
     }
     
-    func retornaUploadImg(status: Bool){
+    func retornaUploadImg(status: Bool, id: String, indexPath: NSIndexPath?){
         if(!status){
             Utils.alert("Erro", msg: "Não foi possível salvar a imagem")
         }
