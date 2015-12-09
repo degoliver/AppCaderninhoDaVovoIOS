@@ -15,7 +15,7 @@ class Utils: UIViewController {
         salvaDados(url, params: params, alerta: false, callback: nil)
     }
     
-    class func salvaDados(url: String, params: [String], alerta: Bool, callback: ((Bool) -> Void)?){
+    class func salvaDados(url: String, params: [String], alerta: Bool, callback: ((Bool, id: String) -> Void)?){
         let config = NSURLSessionConfiguration.defaultSessionConfiguration()
         let session = NSURLSession(configuration: config)
         
@@ -40,19 +40,26 @@ class Utils: UIViewController {
         task.resume()
     }
     
-    class func resultado(data:NSData?, alerta: Bool) -> Bool {
+    class func resultado(data:NSData?, alerta: Bool) -> (Bool, id: String) {
+        var id = ""
         var status: Bool = false
         do{
             let json = try NSJSONSerialization.JSONObjectWithData(data!, options: [])
+            
+            let resu = NSString(data: data!, encoding: NSUTF8StringEncoding)
+            
             if let result = json["msg"] as? String {
                 status = ((json["status"] as! String == "OK") ? true : false)
                 if(alerta){ alert((status) ? "Sucesso" : "Erro", msg: result) }
+                if let idn = json["id"] as? String {
+                    id = idn
+                }
             }
         }catch{
             print("ERRO")
-            return false
+            return (false, "")
         }
-        return status
+        return (status, id)
     }
     
     class func alert(title:String, msg:String){
