@@ -30,6 +30,10 @@ class DetalheReceitaViewController: UIViewController, UIScrollViewDelegate {
         imgLike.hidden = true
        
         Receita.carregaReceita("http://syskf.institutobfh.com.br//modulos/appCaderninho/selectReceita.ashx?receitaID=" + codigo! + "&usuarioID="+PFUser.currentUser()!.objectId!, callback: carregaView)
+        
+        
+        
+        
     }
     
     override func didReceiveMemoryWarning() {
