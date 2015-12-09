@@ -31,9 +31,9 @@ class DetalheReceitaViewController: UIViewController, UIScrollViewDelegate {
        
         Receita.carregaReceita("http://syskf.institutobfh.com.br//modulos/appCaderninho/selectReceita.ashx?receitaID=" + codigo! + "&usuarioID="+PFUser.currentUser()!.objectId!, callback: carregaView)
         
-        
-        
-        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("imageTapped"))
+        imgLike.userInteractionEnabled = true
+        imgLike.addGestureRecognizer(tapGestureRecognizer)
     }
     
     override func didReceiveMemoryWarning() {
