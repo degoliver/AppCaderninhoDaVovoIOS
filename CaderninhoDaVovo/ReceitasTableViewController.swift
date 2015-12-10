@@ -67,9 +67,6 @@ class ReceitasTableViewController: UITableViewController {
         NSUserDefaults.standardUserDefaults().synchronize()
         
         self.dismissViewControllerAnimated(false, completion: nil)
-        
-        
-        
     }
        
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

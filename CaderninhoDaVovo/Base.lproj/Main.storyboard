@@ -310,10 +310,6 @@
                                         </subviews>
                                         <color key="backgroundColor" red="0.96196338383838387" green="0.96196338383838387" blue="0.96196338383838387" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FxQ-PC-kjm">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="164"/>
-                                        <color key="backgroundColor" red="0.92941176469999998" green="0.7725490196" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
-                                    </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mB8-qv-dRY">
                                         <rect key="frame" x="20" y="182" width="280" height="21"/>
                                         <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="20"/>
@@ -339,6 +335,10 @@
                                             <action selector="compartilharButton:" destination="uBF-86-lY8" eventType="touchUpInside" id="iWz-eB-S5Z"/>
                                         </connections>
                                     </button>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FxQ-PC-kjm">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="164"/>
+                                        <color key="backgroundColor" red="0.92941176469999998" green="0.7725490196" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
+                                    </imageView>
                                 </subviews>
                                 <connections>
                                     <outlet property="delegate" destination="uBF-86-lY8" id="nf6-0r-9Bj"/>
@@ -348,7 +348,6 @@
                         <color key="backgroundColor" red="0.92941176469999998" green="0.7725490196" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <connections>
-                        <outlet property="imagemReceita" destination="FxQ-PC-kjm" id="1vc-pS-12F"/>
                         <outlet property="imgLike" destination="wXb-BS-uHG" id="zem-6H-DeN"/>
                         <outlet property="imgReceita" destination="FxQ-PC-kjm" id="t0S-ma-ych"/>
                         <outlet property="lblLike" destination="yC8-88-9tg" id="OOj-os-Nkd"/>
@@ -478,7 +477,7 @@
                                 <rect key="frame" x="0.0" y="64" width="320" height="535"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="noImage" translatesAutoresizingMaskIntoConstraints="NO" id="ROz-60-pqI">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+                                        <rect key="frame" x="0.0" y="-64" width="320" height="164"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Nome" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9AQ-ne-pWv">
                                         <rect key="frame" x="20" y="149" width="280" height="21"/>
@@ -625,6 +624,6 @@
         <image name="noImage" width="500" height="362"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="apb-O9-Pcb"/>
+        <segue reference="Riy-ce-7SL"/>
     </inferredMetricsTieBreakers>
 </document>
