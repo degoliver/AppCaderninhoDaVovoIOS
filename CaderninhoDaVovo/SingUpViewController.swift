@@ -55,9 +55,11 @@ class SingUpViewController: BackgroundViewController {
                 if((error) != nil){
                     Utils.alert("Erro",msg: "\(error)")
                 }else{
-                    self.dismissViewControllerAnimated(false, completion: nil)
+                     Utils.alert("Sucesso",msg: "Usuário Criado!")
                     self.salvaUsuarioMySQL()
                 }
+                self.dismissViewControllerAnimated(false, completion: nil)
+
             })
         }
     }

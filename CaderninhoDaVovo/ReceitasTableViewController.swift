@@ -62,7 +62,14 @@ class ReceitasTableViewController: UITableViewController {
    
     @IBAction func LogoutAction(sender: UIButton) {
         PFUser.logOut()
+        NSUserDefaults.standardUserDefaults().setValue(nil  , forKey:"Usuario")
+        NSUserDefaults.standardUserDefaults().setValue( nil, forKey:"senha")
+        NSUserDefaults.standardUserDefaults().synchronize()
+        
         self.dismissViewControllerAnimated(false, completion: nil)
+        
+        
+        
     }
        
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
