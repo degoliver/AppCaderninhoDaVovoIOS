@@ -55,7 +55,6 @@ class SingUpViewController: BackgroundViewController {
                 if((error) != nil){
                     Utils.alert("Erro",msg: "\(error)")
                 }else{
-                     Utils.alert("Sucesso",msg: "Usuário Criado!")
                     self.salvaUsuarioMySQL()
                 }
                 self.dismissViewControllerAnimated(false, completion: nil)
@@ -78,7 +77,7 @@ class SingUpViewController: BackgroundViewController {
         actionAlert.addAction(UIAlertAction(title: "OK", style:.Default, handler: nil))
         UIApplication.sharedApplication().keyWindow?.rootViewController!.presentViewController(actionAlert, animated: true, completion: nil)
     }
-        //Utils.alert("Sucesso",msg: "Usuário Criado!")
+
 }
     
 
