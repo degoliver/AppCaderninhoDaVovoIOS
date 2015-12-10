@@ -57,7 +57,6 @@ class SingUpViewController: BackgroundViewController {
                 }else{
                     self.dismissViewControllerAnimated(false, completion: nil)
                     self.salvaUsuarioMySQL()
-                    Utils.alert("Sucesso",msg: "Usuário Criado!")
                 }
             })
         }
@@ -66,12 +65,18 @@ class SingUpViewController: BackgroundViewController {
     func salvaUsuarioMySQL(){
         var dados:[String] = [String]()
         dados.append("login=\(PFUser.currentUser()!.username!)")
-        //dados.append("nome=\(PFUser.currentUser()!["nome"]!)")
+        dados.append("nome=" + ((PFUser.currentUser()!["nome"]!) as! String))
         dados.append("senha=\(PFUser.currentUser()!.password!)")
         dados.append("email=\(PFUser.currentUser()!.email!)")
         dados.append("codigo=\(PFUser.currentUser()!.objectId!)")
         
         Utils.salvaDados("http://syskf.institutobfh.com.br//modulos/appCaderninho/saveUsuario.ashx", params: dados)
+        
+        let actionAlert = UIAlertController(title: "Sucesso", message: "Usuário salvo com sucesso!", preferredStyle: .Alert)
+        actionAlert.addAction(UIAlertAction(title: "OK", style:.Default, handler: nil))
+        UIApplication.sharedApplication().keyWindow?.rootViewController!.presentViewController(actionAlert, animated: true, completion: nil)
     }
-    
+        //Utils.alert("Sucesso",msg: "Usuário Criado!")
 }
+    
+

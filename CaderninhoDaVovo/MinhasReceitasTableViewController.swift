@@ -16,12 +16,11 @@ class MinhasReceitasTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        /*self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
         self.refreshControl = UIRefreshControl()
         self.refreshControl?.addTarget(self, action: "doRefresh", forControlEvents: UIControlEvents.ValueChanged)
-        self.refreshControl?.tintColor = UIColor.redColor()
-    }
+        self.refreshControl?.tintColor = UIColor.redColor()*/    }
     
     override func viewDidAppear(animated: Bool) {
         Receita.carregaReceita("http://syskf.institutobfh.com.br//modulos/appCaderninho/selectReceitaList.ashx?usuarioID="+PFUser.currentUser()!.objectId!, callback: carregaTable)
