@@ -19,7 +19,8 @@ class LoginViewController: BackgroundViewController , PFLogInViewControllerDeleg
     var user : String!
     var pass : String!
     override func viewWillDisappear(animated: Bool) {
-       
+       self.usernameField.text = nil
+        self.passwordField.text = nil
         
     }
     override func viewDidAppear(animated: Bool) {
@@ -115,6 +116,7 @@ class LoginViewController: BackgroundViewController , PFLogInViewControllerDeleg
         if(username?.utf16.count < 4 || password?.utf16.count < 5){
             
             Utils.alert("Erro", msg: "Usuário ou senha inválida")
+            self.loadimg.stopAnimating()
         }else{
             PFUser.logInWithUsernameInBackground(username!, password: password!, block: {(user, error ) -> Void in
                 if((user) != nil){
@@ -128,6 +130,7 @@ class LoginViewController: BackgroundViewController , PFLogInViewControllerDeleg
                     self.loadimg.stopAnimating()
                 }else{
                     Utils.alert("Erro", msg: "Não foi possível conectar")
+                    self.loadimg.stopAnimating()
                 }
             })
         }
