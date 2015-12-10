@@ -54,7 +54,6 @@ class LoginViewController: BackgroundViewController , PFLogInViewControllerDeleg
             pass = String!(NSUserDefaults.standardUserDefaults().objectForKey("senha")! as! String)!
             self.usernameField.text = user
                 self.passwordField.text = pass
-            print(self.user + pass)
             
             PFUser.logInWithUsernameInBackground(user, password: pass, block: {(user, error ) -> Void in
                 if((user) != nil){

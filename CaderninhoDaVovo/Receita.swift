@@ -45,7 +45,6 @@ class Receita: NSObject {
         let task = session.dataTaskWithURL(nsurl, completionHandler: { (data:NSData?, response:NSURLResponse?, error:NSError?) -> Void in
             
             let retStr: String = String(data: data!, encoding: NSUTF8StringEncoding)!
-            print(retStr)
             
             dispatch_async(dispatch_get_main_queue(), {
                 let receitas = self.populaLista(data)
