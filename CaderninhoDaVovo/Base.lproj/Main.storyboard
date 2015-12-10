@@ -66,6 +66,20 @@
                                     <action selector="SingUpAction:" destination="BWC-s8-A7c" eventType="touchUpInside" id="X0l-1a-Lpz"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bQX-bz-CUB">
+                                <rect key="frame" x="122" y="427" width="76" height="56"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="D9W-KC-vJl"/>
+                                    <constraint firstAttribute="width" constant="100" id="FbQ-M7-EWQ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Zapfino" family="Zapfino" pointSize="15"/>
+                                <state key="normal" title="Voltar">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="voltarbnt:" destination="BWC-s8-A7c" eventType="touchUpInside" id="RyD-gV-H6H"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -76,6 +90,8 @@
                             <constraint firstItem="Mov-gT-EwZ" firstAttribute="top" secondItem="6it-Vq-vll" secondAttribute="bottom" constant="10" id="b0P-oy-pvh"/>
                             <constraint firstItem="qGk-c1-Lwo" firstAttribute="top" secondItem="Dau-mB-IFq" secondAttribute="bottom" constant="30" id="cE9-pV-AqG"/>
                             <constraint firstItem="qGk-c1-Lwo" firstAttribute="centerX" secondItem="Z7F-tv-7ZU" secondAttribute="centerX" id="egU-jy-H7A"/>
+                            <constraint firstItem="bQX-bz-CUB" firstAttribute="centerX" secondItem="Z7F-tv-7ZU" secondAttribute="centerX" id="gG5-1n-VfW"/>
+                            <constraint firstItem="bQX-bz-CUB" firstAttribute="top" secondItem="qGk-c1-Lwo" secondAttribute="bottom" constant="10" id="ool-SV-Gd1"/>
                             <constraint firstItem="6it-Vq-vll" firstAttribute="centerX" secondItem="Z7F-tv-7ZU" secondAttribute="centerX" id="ozp-H8-v3h"/>
                             <constraint firstItem="Dau-mB-IFq" firstAttribute="top" secondItem="CcF-Yr-43P" secondAttribute="bottom" constant="10" id="v1X-BL-Xrc"/>
                             <constraint firstItem="CcF-Yr-43P" firstAttribute="centerY" secondItem="Z7F-tv-7ZU" secondAttribute="centerY" id="zaZ-5w-l6b"/>
@@ -88,6 +104,7 @@
                         <outlet property="passwordField" destination="CcF-Yr-43P" id="1A8-iQ-cYr"/>
                         <outlet property="signup_btn" destination="qGk-c1-Lwo" id="6Be-Tv-mPa"/>
                         <outlet property="usernameField" destination="Mov-gT-EwZ" id="SjY-rb-jFX"/>
+                        <outlet property="voltar" destination="bQX-bz-CUB" id="xvT-67-fIG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rx9-7l-zkY" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -268,7 +285,7 @@
                         <viewControllerLayoutGuide type="bottom" id="d8f-GK-H75"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleAspectFit" id="qfc-MF-HUJ">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jtb-ip-Scm">

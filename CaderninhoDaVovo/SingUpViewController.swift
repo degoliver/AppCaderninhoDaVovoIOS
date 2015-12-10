@@ -17,12 +17,18 @@ class SingUpViewController: BackgroundViewController {
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var signup_btn: UIButton!
     
+    @IBOutlet weak var voltar: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         signup_btn.backgroundColor = UIColor.whiteColor()
         signup_btn.layer.cornerRadius = 5
         signup_btn.layer.borderWidth = 2
         signup_btn.layer.borderColor = UIColor.blackColor().CGColor
+        voltar.backgroundColor = UIColor.whiteColor()
+        voltar.layer.cornerRadius = 5
+        voltar.layer.borderWidth = 2
+        voltar.layer.borderColor = UIColor.blackColor().CGColor
         // Do any additional setup after loading the view.
     }
 
@@ -61,6 +67,10 @@ class SingUpViewController: BackgroundViewController {
 
             })
         }
+    }
+    
+    @IBAction func voltarbnt(sender: UIButton) {
+        self.dismissViewControllerAnimated(false, completion: nil)
     }
     
     func salvaUsuarioMySQL(){
