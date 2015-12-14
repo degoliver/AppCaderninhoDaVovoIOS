@@ -17,7 +17,7 @@ class ReceitasTableViewController: UITableViewController {
     var receitas:[Receita] = [Receita]()
 
     func updateRaceita(){
-        Receita.carregaReceita("http://syskf.institutobfh.com.br//modulos/appCaderninho/selectReceitaList.ashx?busca=\(busca)" + ((propria) ? "&usuarioID=" + PFUser.currentUser()!.objectId! : ""), callback: carregaTable)
+        Receita.carregaReceita("http://syskf.institutobfh.com.br//modulos/appCaderninho/selectReceitaList.ashx?busca=\(busca)" + ((propria) ? "&favoritos=1&usuarioID=" + PFUser.currentUser()!.objectId! : ""), callback: carregaTable)
     }
     
     override func viewDidLoad() {
@@ -28,7 +28,7 @@ class ReceitasTableViewController: UITableViewController {
         definesPresentationContext = true
         tableView.tableHeaderView = searchController.searchBar
         
-        searchController.searchBar.scopeButtonTitles = ["Todas Receitas", "Minhas Receitas"]
+        searchController.searchBar.scopeButtonTitles = ["Todas", "Favoritas"]
         tableView.tableHeaderView = searchController.searchBar
     }
     
@@ -99,9 +99,9 @@ class ReceitasTableViewController: UITableViewController {
         cell?.loadImg.stopAnimating()
     }
     
-    func filterContentForSearchText(searchText: String, scope: String = "Todas Receitas") {
+    func filterContentForSearchText(searchText: String, scope: String = "Todas") {
         busca = searchText
-        propria = ((scope == "Todas Receitas") ? false : true)
+        propria = ((scope == "Todas") ? false : true)
         updateRaceita()
     }
 
