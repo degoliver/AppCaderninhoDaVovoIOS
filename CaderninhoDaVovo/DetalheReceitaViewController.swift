@@ -68,7 +68,7 @@ class DetalheReceitaViewController: UIViewController, UIScrollViewDelegate {
         imgLike.image = UIImage(named: (receita!.marcadolike!) ? "heart" : "heartWhite")
         
         if(receita!.qtdLike! == 0){
-            lblLike.text = "Ninguém favoritou esta receita ainda"
+            lblLike.text = "Ninguém favoritou esta receita"
         }else {
             lblLike.text = "\(receita!.qtdLike!)" + ((receita!.qtdLike! > 1) ? " gostaram " : " gostou ") + "desta receita"
         }
@@ -112,14 +112,14 @@ class DetalheReceitaViewController: UIViewController, UIScrollViewDelegate {
         view2.addSubview(lblModPre)
         self.scroolView.addSubview(view2)
         
-        scroolView.contentSize.height = 230 + view1.frame.height + view2.frame.height
+        scroolView.contentSize.height = 315 + view1.frame.height + view2.frame.height
     }
     
     @IBAction func compartilharButton(sender: AnyObject) {
         
         if SLComposeViewController.isAvailableForServiceType(SLServiceTypeFacebook){
             
-            var fbShare:SLComposeViewController = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
+            let fbShare:SLComposeViewController = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
             self.presentViewController(fbShare, animated: true, completion: nil)
             
             var TextoFace: String = ""
@@ -130,9 +130,7 @@ class DetalheReceitaViewController: UIViewController, UIScrollViewDelegate {
             
             
         }else{
-            var alert = UIAlertController(title: "Conta", message: "Entre com seu login", preferredStyle: UIAlertControllerStyle.Alert)
-            alert.addAction(UIAlertAction(title: "ok", style: UIAlertActionStyle.Default, handler: nil))
-            self.presentViewController(alert, animated: true, completion: nil)
+            Utils.alert("Conta", msg: "Entre com seu login")
         }
     }
     

@@ -83,11 +83,15 @@ class SingUpViewController: BackgroundViewController {
         
         Utils.salvaDados("http://syskf.institutobfh.com.br//modulos/appCaderninho/saveUsuario.ashx", params: dados)
         
+        let timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "finished", userInfo: nil, repeats: false)
+    }
+    
+    func finished(){
         let actionAlert = UIAlertController(title: "Sucesso", message: "Usuário salvo com sucesso!", preferredStyle: .Alert)
         actionAlert.addAction(UIAlertAction(title: "OK", style:.Default, handler: nil))
         UIApplication.sharedApplication().keyWindow?.rootViewController!.presentViewController(actionAlert, animated: true, completion: nil)
     }
 
 }
-    
+
 

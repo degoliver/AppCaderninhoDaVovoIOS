@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
     </dependencies>
@@ -218,7 +218,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-352" y="486"/>
+            <point key="canvasLocation" x="-404" y="480"/>
         </scene>
         <!--Receitas-->
         <scene sceneID="qnz-Aq-oaw">
@@ -295,7 +295,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cme-NO-KQg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1579" y="367"/>
+            <point key="canvasLocation" x="1667" y="259"/>
         </scene>
         <!--Detalhe Receita View Controller-->
         <scene sceneID="B9I-a6-wyO">
@@ -356,19 +356,19 @@
                                         <color key="tintColor" red="1" green="0.010051519906342232" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
                                         <color key="color" red="1" green="0.010051519906342232" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     </activityIndicatorView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FxQ-PC-kjm">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="164"/>
+                                        <animations/>
+                                        <color key="backgroundColor" red="0.92941176469999998" green="0.7725490196" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
+                                    </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pVZ-4u-XzR">
-                                        <rect key="frame" x="8" y="173" width="90" height="30"/>
+                                        <rect key="frame" x="8" y="158" width="90" height="30"/>
                                         <animations/>
                                         <state key="normal" title="Compartilhar"/>
                                         <connections>
                                             <action selector="compartilharButton:" destination="uBF-86-lY8" eventType="touchUpInside" id="iWz-eB-S5Z"/>
                                         </connections>
                                     </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FxQ-PC-kjm">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="164"/>
-                                        <animations/>
-                                        <color key="backgroundColor" red="0.92941176469999998" green="0.7725490196" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
-                                    </imageView>
                                 </subviews>
                                 <animations/>
                                 <connections>
@@ -411,7 +411,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4EJ-Sc-6eK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="487" y="762"/>
+            <point key="canvasLocation" x="291" y="822"/>
         </scene>
         <!--Minhas Receitas-->
         <scene sceneID="dmw-wf-Bvj">
@@ -519,7 +519,7 @@
                                 <rect key="frame" x="0.0" y="64" width="320" height="535"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="noImage" translatesAutoresizingMaskIntoConstraints="NO" id="ROz-60-pqI">
-                                        <rect key="frame" x="0.0" y="-64" width="320" height="164"/>
+                                        <rect key="frame" x="0.0" y="-66" width="320" height="166"/>
                                         <animations/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Nome" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9AQ-ne-pWv">
@@ -595,6 +595,10 @@
                                             </barButtonItem>
                                         </items>
                                     </toolbar>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="pHq-04-t4G">
+                                        <rect key="frame" x="150" y="112" width="20" height="20"/>
+                                        <color key="color" red="1" green="0.010051519906342232" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    </activityIndicatorView>
                                 </subviews>
                                 <animations/>
                                 <color key="backgroundColor" red="0.92941176469999998" green="0.7725490196" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -617,6 +621,7 @@
                         <outlet property="btnSave" destination="D8L-6b-kHl" id="IVr-ap-EIT"/>
                         <outlet property="imgLoad" destination="BDi-Dh-2jz" id="Ctb-pt-q57"/>
                         <outlet property="imgReceita" destination="ROz-60-pqI" id="5C3-x4-crr"/>
+                        <outlet property="saveReceita" destination="pHq-04-t4G" id="WUv-84-bkv"/>
                         <outlet property="scrollView" destination="Bv8-bP-BgI" id="OFF-PU-tzf"/>
                         <outlet property="tbImagem" destination="HYj-8v-pWK" id="xSE-ng-N7t"/>
                         <outlet property="txtIngredientes" destination="0WV-j1-He8" id="ga9-In-2z9"/>
@@ -667,7 +672,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8ag-EH-F5X" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1047" y="367"/>
+            <point key="canvasLocation" x="981" y="349"/>
         </scene>
     </scenes>
     <resources>

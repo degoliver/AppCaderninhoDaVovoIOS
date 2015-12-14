@@ -46,8 +46,6 @@ class Utils: UIViewController {
         do{
             let json = try NSJSONSerialization.JSONObjectWithData(data!, options: [])
             
-            let resu = NSString(data: data!, encoding: NSUTF8StringEncoding)
-            
             if let result = json["msg"] as? String {
                 status = ((json["status"] as! String == "OK") ? true : false)
                 if(alerta){ alert((status) ? "Sucesso" : "Erro", msg: result) }

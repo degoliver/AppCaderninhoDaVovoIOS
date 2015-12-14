@@ -16,6 +16,7 @@ class NovaReceitaViewController: UIViewController, UITextFieldDelegate,UINavigat
     var codigo:String = "0"
     var receita:Receita?
     
+    @IBOutlet weak var saveReceita: UIActivityIndicatorView!
     @IBOutlet weak var tirarFoto: UIButton!
     @IBOutlet weak var carregarFoto: UIButton!
     @IBOutlet weak var btnSave: UIBarButtonItem!
@@ -45,6 +46,8 @@ class NovaReceitaViewController: UIViewController, UITextFieldDelegate,UINavigat
         txtModoPreparo.layer.cornerRadius = 9.0
         txtModoPreparo.layer.borderWidth = 1
         txtModoPreparo.layer.borderColor = UIColor.lightGrayColor().CGColor
+        
+        saveReceita.transform = CGAffineTransformMakeScale(2.35, 2.35)
     }
     
     override func didReceiveMemoryWarning() {
@@ -112,6 +115,8 @@ class NovaReceitaViewController: UIViewController, UITextFieldDelegate,UINavigat
         dados.append("&usuarioID=\(PFUser.currentUser()!.objectId!)")
         if(codigo != "" && codigo != "0"){ dados.append("&receitaID=\(codigo)") }
         
+        saveReceita.startAnimating()
+        
         Utils.salvaDados("http://syskf.institutobfh.com.br//modulos/appCaderninho/saveReceita.ashx", params: dados, alerta: true, callback: retornaDados)
     }
     
@@ -124,6 +129,8 @@ class NovaReceitaViewController: UIViewController, UITextFieldDelegate,UINavigat
         receita?.codigo = Int(id)
         
         salvarFoto()
+        
+        saveReceita.stopAnimating()
     }
     
     @IBAction func CarregarFoto(sender: AnyObject) {

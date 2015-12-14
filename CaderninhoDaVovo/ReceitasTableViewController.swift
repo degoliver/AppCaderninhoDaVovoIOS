@@ -11,14 +11,29 @@ import Parse
 
 class ReceitasTableViewController: UITableViewController {
     
+    var busca:String = ""
+    var propria:Bool = false
+    let searchController = UISearchController(searchResultsController: nil)
     var receitas:[Receita] = [Receita]()
+
+    func updateRaceita(){
+        Receita.carregaReceita("http://syskf.institutobfh.com.br//modulos/appCaderninho/selectReceitaList.ashx?busca=\(busca)" + ((propria) ? "&usuarioID=" + PFUser.currentUser()!.objectId! : ""), callback: carregaTable)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        definesPresentationContext = true
+        tableView.tableHeaderView = searchController.searchBar
+        
+        searchController.searchBar.scopeButtonTitles = ["Todas Receitas", "Minhas Receitas"]
+        tableView.tableHeaderView = searchController.searchBar
     }
     
     override func viewDidAppear(animated: Bool) {
-        Receita.carregaReceita("http://syskf.institutobfh.com.br//modulos/appCaderninho/selectReceitaList.ashx", callback: carregaTable)
+        updateRaceita()
     }
 
     func carregaTable(receitas:[Receita]){
@@ -83,6 +98,12 @@ class ReceitasTableViewController: UITableViewController {
         }
         cell?.loadImg.stopAnimating()
     }
+    
+    func filterContentForSearchText(searchText: String, scope: String = "Todas Receitas") {
+        busca = searchText
+        propria = ((scope == "Todas Receitas") ? false : true)
+        updateRaceita()
+    }
 
     /*
     // Override to support conditional editing of the table view.
@@ -129,4 +150,20 @@ class ReceitasTableViewController: UITableViewController {
     }
     */
 
+}
+
+extension ReceitasTableViewController: UISearchBarDelegate {
+    // MARK: - UISearchBar Delegate
+    func searchBar(searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        filterContentForSearchText(searchBar.text!, scope: searchBar.scopeButtonTitles![selectedScope])
+    }
+}
+
+extension ReceitasTableViewController: UISearchResultsUpdating {
+    // MARK: - UISearchResultsUpdating Delegate
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        let searchBar = searchController.searchBar
+        let scope = searchBar.scopeButtonTitles![searchBar.selectedScopeButtonIndex]
+        filterContentForSearchText(searchController.searchBar.text!, scope: scope)
+    }
 }

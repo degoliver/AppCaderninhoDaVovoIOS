@@ -27,6 +27,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.       
         
         PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
+        
+        UISearchBar.appearance().barTintColor = UIColor.candyGreen()
+        UISearchBar.appearance().tintColor = UIColor.whiteColor()
+        UITextField.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self]).tintColor = UIColor.candyGreen()
+        
         return true
         
     }
@@ -53,6 +58,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+}
 
+extension UIColor {
+    static func candyGreen() -> UIColor {
+        return UIColor(red: 225.0/255.0, green: 196.0/255.0, blue: 130.0/255.0, alpha: 1.0)
+    }
 }
 
